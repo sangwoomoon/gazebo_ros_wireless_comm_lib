@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>wireless_receiver</name>
+  <name>gazebo_ros_wireless_comm_lib</name>
   <version>0.0.0</version>
-  <description>The wireless_receiver package</description>
+  <description>The wireless transceiver ROS library for Gazebo/ROS</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

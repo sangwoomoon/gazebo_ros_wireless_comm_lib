@@ -4,7 +4,7 @@
   <xacro:arg name="instance" default="0" />
   <xacro:arg name="comm_channel" default="2442"/>
   <xacro:property name="ns" default="talon$(arg instance)" />
-  <xacro:property name="mesh_root" value="package://mass_cu/models/cessna/meshes" />
+  <xacro:property name="mesh_root" value="package://gazebo_ros_wireless_comm_lib/models/cessna/meshes" />
   <xacro:property name="mass" value="4" /> <!-- [kg] -->
   <xacro:property name="body_inertia">
     <inertia ixx="0.1285315" ixy="0.0" ixz="0.0" iyy="0.1825930" iyz="0.0" izz="0.2666894" />
@@ -109,7 +109,7 @@
   </gazebo>
 
   <!-- *********************** GAZEBO ROBOT PLUGINS ******************* -->
-  <xacro:include filename="$(find mass_cu)/models/xacro/imu.xacro" />
+  <xacro:include filename="$(find wireless_comm)/models/xacro/imu.xacro" />
   <xacro:imu ns="${ns}" update_rate="1000">
     <axis xyz="1 0 0"/>
     <pose>0 0 0 3.141593 0 0</pose>
@@ -120,7 +120,7 @@
        2. AIRCRAFT -->
   <!-- NOW ALLOWED TO ADD ADDITIONAL RECEIVERS TO MAKE SEPARATE -->
   <!-- Sensor plugin :: RF rx- 5.8Ghz [5812,5884], Comm rx- 2.4Ghz [2412,2484] -->
-  <xacro:include filename="$(find mass_cu)/models/xacro/receiver.xacro" />
+  <xacro:include filename="$(find wireless_comm)/models/xacro/receiver.xacro" />
   <xacro:rf_receiver 
     ns="${ns}" 
     update_rate="50" 
@@ -136,7 +136,7 @@
   </xacro:rf_receiver>
 
   <!-- Communication Tx plugin: 2.4Ghz -->
-  <xacro:include filename="$(find mass_cu)/models/xacro/transmitter.xacro" />
+  <xacro:include filename="$(find wireless_comm)/models/xacro/transmitter.xacro" />
   <xacro:comm_tx 
     ns="${ns}" 
     update_rate="50" 
@@ -146,18 +146,7 @@
     parent_link="${ns}/base_link">
   </xacro:comm_tx>
 
-  <!-- Communication Rx plugin: 2.4Ghz: NOW IT IS MERGED INTO SENSOR RECEIVER -->
-  <!-- <xacro:include filename="$(find mass_cu)/models/xacro/comm_rx.xacro" />
-  <xacro:comm_rx 
-    ns="${ns}" 
-    update_rate="5" 
-    min_freq="2412" max_freq="2484" 
-    gain="2.3" 
-    sensitivity="-90.0"
-    parent_link="${ns}/base_link">
-  </xacro:comm_rx> -->
-
-  <xacro:include filename="$(find mass_cu)/models/xacro/camera.xacro" />
+  <xacro:include filename="$(find wireless_comm)/models/xacro/camera.xacro" />
   <xacro:simple_camera 
     ns="${ns}" 
     frame_rate="24" hfov="1" wpix="640" hpix="480" camera_range="250" 
@@ -167,12 +156,12 @@
     <origin xyz="0 0 -0.0355" rpy="0 1.570797 0"/>
   </xacro:simple_camera>
 
-  <xacro:include filename="$(find mass_cu)/models/xacro/plane_prop.xacro" />
+  <xacro:include filename="$(find wireless_comm)/models/xacro/plane_prop.xacro" />
   <xacro:plane_prop ns="${ns}">
     <origin xyz="0.179 0 0.0855" rpy="0 0 0"/>
   </xacro:plane_prop>
 
-  <xacro:include filename="$(find mass_cu)/models/xacro/control_surface.xacro" />
+  <xacro:include filename="$(find wireless_comm)/models/xacro/control_surface.xacro" />
   <xacro:control_surface ns="${ns}" surface_name="left_aileron" limit="0.78">
     <origin xyz="-0.165 0.37 0.15" rpy="0 0 0"/>
     <origin xyz="0.195 -0.36 -0.12" rpy="-0.05 0 0.12"/>
@@ -198,7 +187,7 @@
     <axis xyz="0 0 1"/>
   </xacro:control_surface>
 
-  <xacro:include filename="$(find mass_cu)/models/xacro/arduplane.xacro"/>
+  <xacro:include filename="$(find wireless_comm)/models/xacro/arduplane.xacro"/>
   <xacro:arduplane ns="${ns}" inst="$(arg instance)"/>
 
 </robot>
