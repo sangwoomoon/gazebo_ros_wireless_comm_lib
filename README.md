@@ -46,17 +46,25 @@ You need to insert the communication components (`transmitter.xacro`/`receiver.x
 
 # Communication Model Analysis
 
+Please check pdf files under `/comm_analysis` directory.
+
 - Rx strength in frequency analysis: 500 meter-distance
 
-![](./comm_analysis/histogram_2412Mhz_500.pdf =100x100) ![](./comm_analysis/histogram_2462Mhz_500.pdf =250x250) ![](./comm_analysis/histogram_5180Mhz_500.pdf =250x250) ![](./comm_analysis/histogram_5815Mhz_500.pdf =250x250)
+* histogram_2412Mhz_500.pdf
+* histogram_2462Mhz_500.pdf
+* histogram_5180Mhz_500.pdf
+* histogram_5815Mhz_500.pdf
 
 - Rx strength in distance analysis
 
-![](./comm_analysis/histogram_2412Mhz_500.pdf =100x100) ![](./comm_analysis/histogram_2462Mhz_500.pdf =250x250) ![](./comm_analysis/histogram_5180Mhz_500.pdf =250x250) ![](./comm_analysis/histogram_5815Mhz_500.pdf =250x250)
+* histogram_2412Mhz_500.pdf
+* histogram_2462Mhz_500.pdf
+* histogram_5180Mhz_500.pdf
+* histogram_5815Mhz_500.pdf
 
 - Rx strength analysis compared with real data
 
-![Signal strength in distance](./comm_analysis/boxplot_range.pdf =250x250) ![Signal strength in distance compared with real communication data](./comm_analysis/beta_profile.pdf =250x250)
+* beta_profile.pdf
 
 # Reference
 
