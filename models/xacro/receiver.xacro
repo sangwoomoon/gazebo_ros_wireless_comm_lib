@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!-- visit https://github.com/arpg/Gazebo/blob/master/gazebo/sensors/WirelessTransmitter.cc for more formulation/info -->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="rf_receiver" 
+    params="ns 
+            update_rate 
+            comm_min_freq 
+            comm_max_freq  
+            meas_min_freq
+            meas_max_freq
+            comm_noise_floor
+            comm_byte_num
+            comm_id_freq
+            gain 
+            sensitivity 
+            parent_link
+            *pose">
+    <link name="${ns}/rf_receiver_link">
+      <inertial>
+        <mass value="0.001" />
+      </inertial>
+    </link>
+
+    <joint name="${ns}/rf_receiver_joint" type="revolute">
+      <parent link="${parent_link}"/>
+      <child link="${ns}/rf_receiver_link" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <dynamics damping="1"/>
+      <limit effort="0" velocity="0" lower="0" upper="0" />
+    </joint>
+
+    <gazebo reference="${ns}/rf_receiver_link">
+      <sensor name="wirelessReceiver" type="wireless_receiver">
+        <always_on>true</always_on>
+        <update_rate>${update_rate}</update_rate>
+        <visualize>false</visualize>
+        <transceiver>
+          <min_frequency>${comm_min_freq}</min_frequency>
+          <max_frequency>${meas_max_freq}</max_frequency>
+          <gain>${gain}</gain>
+          <sensitivity>${sensitivity}</sensitivity>
+        </transceiver>
+        <plugin name="receiver_plugin" filename="libwireless_receiver.so">
+          <robotNamespace>${ns}</robotNamespace>
+          <commMinFreq>${comm_min_freq}</commMinFreq>
+          <commMaxFreq>${comm_max_freq}</commMaxFreq>
+          <measMinFreq>${meas_min_freq}</measMinFreq>
+          <measMaxFreq>${meas_max_freq}</measMaxFreq>
+          <commNoiseFloor>${comm_noise_floor}</commNoiseFloor>
+          <commByteNum>${comm_byte_num}</commByteNum>
+          <commIdFreq>${comm_id_freq}</commIdFreq>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>${update_rate}</updateRate>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+</robot>
